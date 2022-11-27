@@ -1,6 +1,6 @@
-package com.example.demo.view
+package ru.psu.techjava.view
 
-import com.example.demo.model.CStudent
+import ru.psu.techjava.model.CStudent
 import javafx.stage.StageStyle
 import tornadofx.*
 import java.util.*

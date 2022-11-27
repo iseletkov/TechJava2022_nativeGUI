@@ -1,6 +1,6 @@
-package com.example.demo.app
+package ru.psu.techjava.app
 
-import com.example.demo.view.MainView
+import ru.psu.techjava.view.MainView
 import tornadofx.App
 
 class MyApp: App(MainView::class, Styles::class)

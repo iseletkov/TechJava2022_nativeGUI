@@ -1,4 +1,4 @@
-package com.example.demo.view
+package ru.psu.techjava.view
 
 import tornadofx.*
 
