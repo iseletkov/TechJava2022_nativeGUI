@@ -6,7 +6,6 @@ import ru.psu.techjava.util.convertes.CConverterYear
 import ru.psu.techjava.viewmodels.CViewModelStudent
 import ru.psu.techjava.viewmodels.CViewModelStudentList
 import tornadofx.*
-import java.util.*
 
 class CViewStudentTable                     : View("Students")
 {
@@ -16,7 +15,7 @@ class CViewStudentTable                     : View("Students")
 
     val table                               = tableview(viewModelList.students)
     {
-        isEditable = true
+        isEditable                          = true
         column(messages["ID"],CStudent::propertyId)
         column(messages["FIO"], CStudent::propertyName).makeEditable()
         column(messages["Group"], CStudent::propertyStudyGroup).makeEditable()
@@ -25,10 +24,33 @@ class CViewStudentTable                     : View("Students")
         viewModelItem.rebindOnChange(this) { selectedItem ->
             item                            = selectedItem ?: CStudent()
         }
+        onSelectionChange {
+            viewModelList.setTableSelection(this.selectedItem)
+        }
     }
 
     init {
+        root.top{
+            hbox {
+                button(messages["Add"]) {
+                    action{
+                        viewModelList.add()
+                    }
+                }
+                button(messages["Delete"]) {
+                    enableWhen(viewModelList.deleteEnabled)
+                    action{
+                        viewModelList.delete(table.selectedItem)
+                    }
+                }
+                button(messages["Save"]) {
+                    action{
+                        viewModelList.saveAll()
+                    }
+                }
+            }
 
+        }
         root.center{
             this                            += table
         }
@@ -51,6 +73,7 @@ class CViewStudentTable                     : View("Students")
                         button(messages["Cancel"]).action {
                             viewModelItem.rollback()
                         }
+
                     }
                 }
             }

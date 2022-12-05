@@ -9,6 +9,7 @@ class CViewModelStudent(
 )                                           : ItemViewModel<CStudent>(student)
 {
     private val serviceStudents             : CServiceStudents by inject()
+
     val id                                  = bind(CStudent::propertyId)
     val name                                = bind(CStudent::propertyName)
     val year                                = bind(CStudent::propertyYear)
@@ -16,7 +17,9 @@ class CViewModelStudent(
 
     fun save()
     {
-        this.commit()
-        serviceStudents.save(this.item)
+        this.commit() //Сохранение данных из полей на форме в сущность
+        serviceStudents.save(this.item) //Передача данных на сервер
     }
+
+
 }
