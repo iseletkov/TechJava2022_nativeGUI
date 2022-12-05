@@ -9,7 +9,9 @@ class CApplication                          : App(CViewStudentTable::class, Styl
 {
     private val api                         : Rest by inject()
     init {
+        //Язык интерфейса приложения.
         FX.locale                           = Locale("ru")
+        //Базовая часть адреса для подключения к API сервера.
         api.baseURI                         = "http://192.168.1.101:8080/"
     }
 }
